@@ -1,0 +1,44 @@
+# Node.js files
+node_modules/
+.cache/
+.next/
+.yarn/
+.history/
+yarn.lock
+package-lock.json
+
+# VS Code settings files
+.vscode/
+settings.json
+tasks.json
+keybindings.json
+
+# Development server
+.env
+.env.development
+.env.production
+
+# Test files
+test/*.js
+test/**/*.js
+jest.config.js
+
+# Documentation
+docs/
+
+# Live reload
+nodemon.json
+
+# TypeScript build files
+dist/
+tsconfig.tsbuild.json
+
+# Tailwind CSS files
+tailwind.config.js
+postcss.config.js
+**/tailwind.css
+
+# Others
+coverage/
+*.log
+*.swp
