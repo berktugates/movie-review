@@ -42,3 +42,4 @@ postcss.config.js
 coverage/
 *.log
 *.swp
+db.config

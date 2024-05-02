@@ -4,11 +4,20 @@ const PORT = 8080;
 const cors = require('cors');
 const mongoose = require('mongoose')
 
-const username = 'berktugsosyal'
-const password = 1234
+const username = 'berktug'
+const password = '1903'
 const database = 'movie-review'
 
-const uri = `mongodb+srv://${username}:${password}@cluster0.uimsvjf.mongodb.net/${database}?retryWrites=true&w=majority&appName=Cluster0`
+const movieRoutes = require('./routes/movie');
+const categoryRoutes = require('./routes/category');
+const personRoutes = require('./routes/person');
+
+app.use(express.json());
+app.use(movieRoutes);
+app.use(categoryRoutes);
+app.use(personRoutes);
+
+const uri = `mongodb+srv://${username}:${password}@movie-review-cluster.n7z23j2.mongodb.net/${database}?retryWrites=true&w=majority&appName=movie-review-cluster`
 
 async function connect(){
     try{
