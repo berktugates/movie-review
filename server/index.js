@@ -4,6 +4,11 @@ const PORT = 8080;
 const cors = require('cors');
 const mongoose = require('mongoose')
 
+app.use(cors({
+    origin: "*",
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}))
+
 const username = 'berktug'
 const password = '1903'
 const database = 'movie-review'
