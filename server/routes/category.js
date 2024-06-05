@@ -44,7 +44,7 @@ router.put('/api/categories/:id', async(req,res)=>{
 router.get('/api/categories/:id', async(req,res)=>{
     try{
         const id = req.params.id;
-        const category = Category.findById(id);
+        const category =  await Category.findById(id);
         if(!category){
             return res.status(400).send('There is no such category');
         }

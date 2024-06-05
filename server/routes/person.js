@@ -22,7 +22,7 @@ router.delete('/api/persons/:id', async(req,res)=>{
 router.put('/api/persons/:id', async(req,res)=>{
     try{
         const id = req.params.id;
-        const person = Person.findById(id);
+        const person = await Person.findById(id);
         if(!person){
             return res.status(400).send('There is no such person');
         }
