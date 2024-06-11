@@ -18,7 +18,7 @@ export default function ActionMovies() {
       });
   }, []);
   const romanticMovies = movies.filter((movie) => {
-    return movie.category_id == 6;
+    return movie.category_name == "Romantic"
   });
   console.log(romanticMovies);
   return (

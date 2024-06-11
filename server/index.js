@@ -16,11 +16,13 @@ const database = 'movie-review'
 const movieRoutes = require('./routes/movie');
 const categoryRoutes = require('./routes/category');
 const personRoutes = require('./routes/person');
+const reviewRoutes = require('./routes/review');
 
 app.use(express.json());
 app.use(movieRoutes);
 app.use(categoryRoutes);
 app.use(personRoutes);
+app.use(reviewRoutes);
 
 const uri = `mongodb+srv://${username}:${password}@movie-review-cluster.n7z23j2.mongodb.net/${database}?retryWrites=true&w=majority&appName=movie-review-cluster`
 

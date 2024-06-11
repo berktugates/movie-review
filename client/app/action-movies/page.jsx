@@ -18,7 +18,7 @@ export default function ActionMovies() {
       });
   }, []);
   const actionMovies = movies.filter((movie) => {
-    return movie.category_id == 4;
+    return movie.category_name == "Action";
   });
   console.log(actionMovies);
   return (
@@ -46,7 +46,7 @@ export default function ActionMovies() {
                     is_home={movie.is_home}
                     is_active={movie.is_active}
                     image={movie.image}
-                    rayting={movie.rayting}
+                    rayting={movie.ratting}
                     category_id={movie.category_id}
                     director_id={movie.director_id}
                     actors_id={movie.actors_id}

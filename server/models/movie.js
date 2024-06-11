@@ -7,10 +7,15 @@ const movieSchema = mongoose.Schema({
     is_home : Boolean,
     is_active : Boolean,
     image : String,
-    rayting : Number,
-    category_id: String,
-    director_id: String,
-    actors_id: Array
+    rating : Number,
+    category_name: String,
+    release_year: Number,
+    duration: Number,
+    director_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Person',
+    },
+    actors_name: Array,
 })
 
 const Movie = mongoose.model("Movie",movieSchema);
@@ -22,10 +27,12 @@ function validateMovie (movie){
         is_home : Joi.boolean().required(),
         is_active : Joi.boolean().required(),
         image : Joi.string(),
-        rayting : Joi.number().required(),
-        category_id : Joi.number().required(),
-        director_id : Joi.number().required(),
-        actors_id: Joi.array().required()
+        rating : Joi.number().required(),
+        category_name : Joi.string().required(),
+        release_year: Joi.number().min(1880).required(),
+        duration: Joi.number().required(),
+        director_id : Joi.string().required(),
+        actors_name: Joi.array().required(),
     })
     return schema.validate(movie)
 }

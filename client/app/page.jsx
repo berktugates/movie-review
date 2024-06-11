@@ -20,16 +20,16 @@ export default function Home() {
   }, []);
   const visionMovies = movies.slice(-4);
   const popular = movies.filter((movie) => {
-    return movie.rayting > 7;
+    return movie.rating > 7;
   });
   const popularMovies = popular.slice(-4);
   const christopherNolanFilms = movies.filter((movie) => {
-    return movie.director_id == 1;
+    return movie.director_id == "663e9bf76a4dc85cc1d2159d";
   });
 
-  const demirkubuz = movies.filter((movie)=>{
-    return movie.director_id == 5;
-  })
+  const demirkubuz = movies.filter((movie) => {
+    return movie.director_id == "6636aefa4d5930aaa7b16be2";
+  });
   const demirkubuzMovies = demirkubuz.slice(-4);
   return (
     <>
@@ -56,10 +56,9 @@ export default function Home() {
                   is_home={movie.is_home}
                   is_active={movie.is_active}
                   image={movie.image}
-                  rayting={movie.rayting}
-                  category_id={movie.category_id}
+                  category_id={movie.category_name}
                   director_id={movie.director_id}
-                  actors_id={movie.actors_id}
+                  actors_id={movie.actors_name}
                 />
               );
             })}
@@ -79,10 +78,15 @@ export default function Home() {
                 return (
                   <MovieCard
                     key={index}
+                    id={popular._id}
                     title={popular.title}
                     description={popular.description}
-                    rayting={popular.rayting}
+                    is_home={popular.is_home}
+                    is_active={popular.is_active}
                     image={popular.image}
+                    category_id={popular.category_name}
+                    director_id={popular.director_id}
+                    actors_id={popular.actors_name}
                   />
                 );
               })}
@@ -103,10 +107,15 @@ export default function Home() {
                 return (
                   <MovieCard
                     key={index}
+                    id={nolan._id}
                     title={nolan.title}
                     description={nolan.description}
-                    rayting={nolan.rayting}
+                    is_home={nolan.is_home}
+                    is_active={nolan.is_active}
                     image={nolan.image}
+                    category_id={nolan.category_name}
+                    director_id={nolan.director_id}
+                    actors_id={nolan.actors_name}
                   />
                 );
               })}
@@ -126,10 +135,15 @@ export default function Home() {
                 return (
                   <MovieCard
                     key={index}
+                    id={demirkubuz._id}
                     title={demirkubuz.title}
                     description={demirkubuz.description}
-                    rayting={demirkubuz.rayting}
+                    is_home={demirkubuz.is_home}
+                    is_active={demirkubuz.is_active}
                     image={demirkubuz.image}
+                    category_id={demirkubuz.category_name}
+                    director_id={demirkubuz.director_id}
+                    actors_id={demirkubuz.actors_name}
                   />
                 );
               })}

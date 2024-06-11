@@ -12,7 +12,7 @@ router.delete('/api/movies/:id', async(req,res)=>{
         }
         else{
             await movie.deleteOne();
-            return res.status(200).json(movie); //belki üst satıra geçebilir postman incele
+            return res.status(200).json(movie);
         }
     }
     catch(err){
@@ -37,10 +37,12 @@ router.put('/api/movies/:id', async(req,res)=>{
             movie.is_home = req.body.is_home
             movie.is_active = req.body.is_active
             movie.image = req.body.image
-            movie.rayting = req.body.rayting
-            movie.category_id = req.body.category_id
+            movie.rating = req.body.rating
+            movie.category_name = req.body.category_name
+            movie.release_year = req.body.release_year
+            movie.duration = req.body.duration
             movie.director_id = req.body.director_id
-            movie.actors_id = req.body.actors_id
+            movie.actors_name = req.body.actors_name
 
             await movie.save();
             return res.status(200).json(movie)
@@ -79,10 +81,12 @@ router.post('/api/movies', async(req,res)=>{
             is_home : req.body.is_home,
             is_active : req.body.is_active,
             image : req.body.image,
-            rayting : req.body.rayting,
-            category_id : req.body.category_id,
+            rating : req.body.rating,
+            category_name : req.body.category_name,
+            release_year : req.body.release_year,
+            duration : req.body.duration,
             director_id : req.body.director_id,
-            actors_id : req.body.actors_id
+            actors_name : req.body.actors_name
         })
         
         await movie.save();

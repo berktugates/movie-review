@@ -18,7 +18,7 @@ export default function DramaMovies() {
       });
   }, []);
   const dramaMovies = movies.filter((movie) => {
-    return movie.category_id == 2;
+    return movie.category_name == "Drama"
   });
   console.log(dramaMovies);
   return (
@@ -47,10 +47,10 @@ export default function DramaMovies() {
                     is_home={movie.is_home}
                     is_active={movie.is_active}
                     image={movie.image}
-                    rayting={movie.rayting}
-                    category_id={movie.category_id}
-                    director_id={movie.director_id}
-                    actors_id={movie.actors_id}
+                    rayting={movie.rating}
+                    category_id={movie.category_name}
+                    director_id={movie.director_name}
+                    actors_id={movie.actors_name}
                   />
                 );
               })}

@@ -14,9 +14,11 @@ export default function () {
   const [is_active, setIs_active] = useState();
   const [image, setImage] = useState('');
   const [rating, setRating] = useState(0);
-  const [category_id, setCategoryId] = useState(0);
+  const [categoryName, setCategoryName] = useState("");
+  const [releaseYear, setReleaseYear] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [director_id, setDirectorId] = useState(0);
-  const [actors_id, setActorsIds] = useState([]);
+  const [actorsNames, setActorsNames] = useState([]);
 
   const r = useRouter();
 
@@ -29,10 +31,13 @@ export default function () {
             setDescription(response.data.description);
             setIs_home(response.data.is_home);
             setIs_active(response.data.is_active);
-            setRating(response.data.rayting);
-            setCategoryId(response.data.category_id);
+            setImage(response.data.image);
+            setRating(response.data.rating);
+            setCategoryName(response.data.category_name);
+            setReleaseYear(response.data.release_year);
+            setDuration(response.data.duration);
             setDirectorId(response.data.director_id);
-            setActorsIds(response.data.actors_id);
+            setActorsNames(response.data.actors_name);
         })
         .catch((err)=>{
             console.log(err)
@@ -50,10 +55,12 @@ export default function () {
         is_home : is_home,
         is_active : is_active,
         image : image,
-        rayting : rating,
-        category_id : category_id,
+        rating : rating,
+        category_name : categoryName,
+        release_year : releaseYear,
+        duration : duration,
         director_id, director_id,
-        actors_id : actors_id
+        actors_name : actorsNames
       });
       r.back();
     }
@@ -131,15 +138,33 @@ export default function () {
                 />
               </li>
               <li className="flex flex-col gap-x-8 my-2 p-2">
-                <label htmlFor="categoryId">Category ID</label>
+                <label htmlFor="categoryName">Category Name</label>
                 <input
-                  id="categoryId"
-                  value={category_id}
-                  onChange={(e) => setCategoryId(e.target.value)}
+                  id="categoryName"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
                   className="border rounded-md h-8 p-1"
-                  type="number"
-                  min={1}
-                  max={10}
+                  type="text"
+                />
+              </li>
+              <li className="flex flex-col gap-x-8 my-2 p-2">
+                <label htmlFor="releaseYear">Release Year</label>
+                <input
+                  id="releaseYear"
+                  value={releaseYear}
+                  onChange={(e) => setReleaseYear(e.target.value)}
+                  className="border rounded-md h-8 p-1"
+                  type="text"
+                />
+              </li>
+              <li className="flex flex-col gap-x-8 my-2 p-2">
+                <label htmlFor="duration">Duration (Minute)</label>
+                <input
+                  id="duration"
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+                  className="border rounded-md h-8 p-1"
+                  type="text"
                 />
               </li>
               <li className="flex flex-col gap-x-8 my-2 p-2">
@@ -155,15 +180,15 @@ export default function () {
                 />
               </li>
               <li className="flex flex-col gap-x-8 my-2 p-2">
-                <label htmlFor="actors">Actors (IDs separated by commas)</label>
-                <input
+                <label htmlFor="actors">Actors</label>
+                <textarea
                   id="actors"
-                  value={actors_id}
+                  value={actorsNames}
                   onChange={(e) => {
-                    const ids = e.target.value
+                    const names = e.target.value
                       .split(",")
-                      .map((id) => id.trim());
-                    setActorsIds(ids);
+                      .map((name) => name.trim());
+                    setActorsNames(names);
                   }}
                   className="border rounded-md h-8 p-1"
                   type="text"

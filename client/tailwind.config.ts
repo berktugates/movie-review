@@ -19,6 +19,7 @@ const config: Config = {
         'visions-bg' : '#F9F9F9',
         'category-desc' : '#C8C8C8',
         'movie-desc' : '#5C5C5C',
+        'category-bg' : '#F0EBF9',
       },
       fontFamily: {
       },

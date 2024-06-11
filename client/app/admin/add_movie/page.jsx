@@ -7,13 +7,15 @@ export default function AddMovie() {
   const r = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [isHome, setIsHome] = useState(false); // Initial checkbox state
-  const [isActive, setIsActive] = useState(false); // Initial checkbox state
+  const [isHome, setIsHome] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [image, setImage] = useState("");
-  const [rating, setRating] = useState(0); // Corrected typo: rating instead of rayting
-  const [categoryId, setCategoryId] = useState(0);
-  const [directorId, setDirectorId] = useState(0);
-  const [actorsIds, setActorsIds] = useState([]); // Array for multiple actor IDs
+  const [rating, setRating] = useState(0);
+  const [categoryName, setCategoryName] = useState("");
+  const [releaseYear, setReleaseYear] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [directorId, setDirectorId] = useState("");
+  const [actorsNames, setActorsNames] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,10 +27,12 @@ export default function AddMovie() {
         is_home:isHome,
         is_active:isActive,
         image:image,
-        rayting:rating, // Corrected typo
-        category_id: categoryId, // Lowercase 'category' for consistency
-        director_id: directorId, // Lowercase 'director' for consistency
-        actors_id: actorsIds, // Use 'actors' for clarity
+        rating:rating,
+        category_name: categoryName,
+        release_year : releaseYear,
+        duration : duration,
+        director_id: directorId, 
+        actors_name: actorsNames,
       });
 
       setTitle("");
@@ -37,13 +41,14 @@ export default function AddMovie() {
       setIsActive(false);
       setImage("");
       setRating("");
-      setCategoryId("");
+      setCategoryName("");
+      setReleaseYear(0);
+      setDuration(0);
       setDirectorId("");
-      setActorsIds([]);
+      setActorsNames([]);
       r.back();
     } catch (err) {
       console.error(err);
-      // Handle errors appropriately (e.g., display error message to user)
     }
   };
 
@@ -116,15 +121,33 @@ export default function AddMovie() {
                 />
               </li>
               <li className="flex flex-col gap-x-8 my-2 p-2">
-                <label htmlFor="categoryId">Category ID</label>
+                <label htmlFor="categoryName">Category Name</label>
                 <input
-                  id="categoryId"
-                  value={categoryId}
-                  onChange={(e) => setCategoryId(e.target.value)}
+                  id="categoryName"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                  className="border rounded-md h-8"
+                  type="text"
+                />
+              </li>
+              <li className="flex flex-col gap-x-8 my-2 p-2">
+                <label htmlFor="releaseYear">Release Year</label>
+                <input
+                  id="releaseYear"
+                  value={releaseYear}
+                  onChange={(e) => setReleaseYear(e.target.value)}
                   className="border rounded-md h-8"
                   type="number"
-                  min={1}
-                  max={10}
+                />
+              </li>
+              <li className="flex flex-col gap-x-8 my-2 p-2">
+                <label htmlFor="duration">Duration (Minute)</label>
+                <input
+                  id="duration"
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+                  className="border rounded-md h-8"
+                  type="number"
                 />
               </li>
               <li className="flex flex-col gap-x-8 my-2 p-2">
@@ -134,20 +157,19 @@ export default function AddMovie() {
                   value={directorId}
                   onChange={(e) => setDirectorId(e.target.value)}
                   className="border rounded-md h-8"
-                  type="number"
-                  min={1}
+                  type="text"
                 />
               </li>
               <li className="flex flex-col gap-x-8 my-2 p-2">
-                <label htmlFor="actors">Actors (IDs separated by commas)</label>
+                <label htmlFor="actors">Actors</label>
                 <input
                   id="actors"
-                  value={actorsIds.join(",")}
+                  value={actorsNames.join(",")}
                   onChange={(e) => {
-                    const ids = e.target.value
+                    const names = e.target.value
                       .split(",")
-                      .map((id) => id.trim());
-                    setActorsIds(ids);
+                      .map((name) => name.trim());
+                    setActorsNames(names);
                   }}
                   className="border rounded-md h-8"
                   type="text"
